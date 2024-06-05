@@ -1,45 +1,92 @@
-(() => {
+(()=>{
 
-    // Tipos
-    const batman: string = 'Bruce';
-    const superman: string  = 'Clark';
   
-    const existe: boolean = false;
-  
-    // Tuplas
-    const parejaHeroes: [string, string] = [batman,superman];
-    const villano: [string, number, boolean] = ['Lex Lutor',5,true];
-  
-    // Arreglos
-    const aliados: string[] = ['Mujer Maravilla','Acuaman','San', 'Flash'];
-  
-    //Enumeraciones
-    enum fuerzaHeroes {
-        flash = 5,
-        superman = 100,
-        batman = 1,
-        acuaman = 0
+type superCoches = {
+  carroceria: string;
+  modelo: string;
+  antibalas: boolean;
+  pasajeros: number;
+  disparar?: () => void;
+}
 
-    }
-    const fuerzaFlash:fuerzaHeroes = fuerzaHeroes.flash;
-    const fuerzaSuperman: fuerzaHeroes = fuerzaHeroes.superman;
-    const fuerzaBatman: fuerzaHeroes = fuerzaHeroes.batman;
-    const fuerzaAcuaman: fuerzaHeroes = fuerzaHeroes.acuaman;
-  
-    // Retorno de funciones
-    function activar_batiseñal(): string{
-      return 'activada';
-    }
-  
-    function pedir_ayuda():void{
-      console.log('Auxilio!!!');
-    }
-  
-    // Aserciones de Tipo
-    const poder: any = '100';
-    const largoDelPoder:number = (poder as string).length;
-    console.log( largoDelPoder );
-  
-  
-  })()
-  
+
+
+// Objetos
+const batimovil: superCoches = {
+  carroceria: "Negra",
+  modelo: "6x6",
+  antibalas: true,
+  pasajeros:4
+};
+
+const bumblebee: superCoches = {
+  carroceria: "Amarillo con negro",
+  modelo: "4x2",
+  antibalas: true,
+  pasajeros:4,
+  disparar(){ // El metodo disparar es opcional
+    console.log("Disparando");
+  }
+};
+
+
+// Villanos debe de ser un arreglo de objetos personalizados
+
+type Villanos = {
+  nombre: string;
+  edad?: number;
+  mutante: boolean;
+}
+console.log('paso por alla');
+
+
+const villanos: Villanos[] = [{
+  nombre:"Lex Luthor",
+  edad: 54,
+  mutante:false
+},{
+  nombre: "Erik Magnus Lehnsherr",
+  edad: 49,
+  mutante: true
+},{
+  nombre: "James Logan",
+  edad: undefined,
+  mutante: true
+}];
+
+// Multiples tipos
+// cree dos tipos, uno para charles y otro para apocalipsis
+console.log('paso por aqui');
+
+type Charles = {
+  poder: string;
+  estatura: number;
+}
+
+type Apocalipsis = {
+  lider: boolean;
+  miembros: string[]; 
+}
+
+const charles: Charles = {
+  poder:"psiquico",
+  estatura: 1.78
+};
+
+const apocalipsis: Apocalipsis = {
+  lider:true,
+  miembros: ["Magneto","Tormenta","Psylocke","Angel"]
+}
+
+// Mystique, debe poder ser cualquiera de esos dos mutantes (charles o apocalipsis)
+let mystique: Charles | Apocalipsis;
+
+mystique = charles;
+mystique = apocalipsis;
+
+
+console.log(apocalipsis);
+
+
+
+})();
